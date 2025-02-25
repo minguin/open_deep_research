@@ -6,7 +6,7 @@ huggingface_hub>=0.23.4
 mammoth>=1.8.0
 markdownify>=0.13.1
 numexpr>=2.10.1
-numpy>=2.1.2
+numpy==1.26.4
 openai>=1.52.2
 openpyxl
 pandas>=2.2.3
@@ -19,7 +19,7 @@ pypdf>=5.1.0
 python-dotenv>=1.0.1
 python_pptx>=1.0.2
 Requests>=2.32.3
-serpapi>=0.1.5
+google-search-results
 tqdm>=4.66.4
 torch>=2.2.2
 torchvision>=0.17.2
