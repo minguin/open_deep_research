@@ -3,6 +3,7 @@
 import streamlit as st
 import threading
 import os
+import agentops
 from dotenv import load_dotenv
 # from huggingface_hub import login
 from scripts.text_inspector_tool import TextInspectorTool
@@ -77,8 +78,9 @@ def translate_to_japanese(text, model):
     translated_text = model(messages)
     return translated_text if isinstance(translated_text, str) else translated_text.content
 
-@st.cache_data(show_spinner=False)
+# @st.cache_data(show_spinner=False)
 def run_open_deep_research(question, model_id="o1"):
+    agentops.init(os.environ['AGENTOPS_API_KEY'])
     text_limit = 100000
 
     model = LiteLLMModel(
@@ -135,6 +137,7 @@ def run_open_deep_research(question, model_id="o1"):
     )
 
     answer = manager_agent.run(question)
+    agentops.end_session('Success')
     return answer, manager_agent
     # translated_answer = translate_to_japanese(answer, model)
     # return translated_answer

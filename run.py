@@ -2,6 +2,7 @@ import argparse
 import os
 import threading
 
+import agentops
 from dotenv import load_dotenv
 # from huggingface_hub import login
 from scripts.text_inspector_tool import TextInspectorTool
@@ -24,6 +25,7 @@ from smolagents import (
     ToolCallingAgent,
 )
 
+agentops.init(os.environ['AGENTOPS_API_KEY'])
 
 AUTHORIZED_IMPORTS = [
     "requests",
@@ -150,6 +152,7 @@ def main():
     translated_answer = translate_to_japanese(answer, model)
     print(f"回答結果: {translated_answer}")
 
+    agentops.end_session('Success')
 
 if __name__ == "__main__":
     main()
